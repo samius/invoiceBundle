@@ -1,0 +1,9 @@
+{
+    "name": "samius/invoicebundle",
+    "minimum-stability" : "dev",
+    "autoload": {
+        "psr-0": {
+            "Samius": "src/"
+        }
+    }
+}
