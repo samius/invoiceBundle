@@ -1,0 +1,4 @@
+services:
+    invoiceservice:
+        class: Samius\InvoiceBundle\Service\InvoiceService
+        arguments: ['@doctrine.orm.entity_manager']

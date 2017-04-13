@@ -2,6 +2,7 @@
 namespace Samius\InvoiceBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Samius\InvoiceBundle\Entity\Invoice;
 
 class InvoiceService
 {
@@ -15,15 +16,30 @@ class InvoiceService
         $this->em = $em;
     }
 
-    public function saveInvoice($invoice)
+    /**
+     * @param Invoice $invoice
+     */
+    public function saveInvoice(Invoice $invoice)
     {
-        $number = $this->getInvoiceNewNumber($invoice->getNumberFormat);
+        $number = $this->getInvoiceLastNumber($invoice);
+    }
+
+    /**
+     * Returns number of last saved invoice with given format and corresponding year
+     * @param Invoice $invoice
+     */
+    private function getInvoiceLastNumber(Invoice $invoice)
+    {
+        $res = $this->em->getRepository('Invoice')->createQueryBuilder('i')->where('number LIKE :numberBase')->setParameter('numberBase', $invoice->getNumberBase() . '%')
+            ->getQuery()->getFirstResult();
+
+        dump($res); die();
+
+
     }
     
-    private function getInvoiceNewNumber()
+    private function getNumberFromFormat()
     {
-        $this->em->getRepository('Invoice')
-        //get last number
-        //increment number
+        
     }
 }
