@@ -5,5 +5,10 @@
         "psr-0": {
             "Samius\\": "src/"
         }
+    },
+    "require": {
+        "tecnickcom/tcpdf": "^6.2"
     }
+
+
 }

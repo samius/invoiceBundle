@@ -1,4 +1,11 @@
 services:
+    invoicetcpdf:
+        class: TCPDF
+
     invoiceservice:
         class: Samius\InvoiceBundle\Service\InvoiceService
         arguments: ['@doctrine.orm.entity_manager']
+
+    invoicepdfconverter:
+        class: Samius\InvoiceBundle\Converter\PdfConverter
+        arguments: ['@invoicetcpdf']

@@ -40,6 +40,12 @@ class Invoice
 
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $dueDate;
+
+
+    /**
      * @ORM\Column(type="string")
      */
     private $invoiceName;
@@ -47,37 +53,44 @@ class Invoice
 
     /**
      * @ORM\Column(type="string")
-     */private $invoiceCompany;
+     */
+    private $invoiceCompany;
 
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     */private $invoiceIc;
+     */
+    private $invoiceIc;
 
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     */private $invoiceDic;
+     */
+    private $invoiceDic;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $invoiceStreet;
+     */
+    private $invoiceStreet;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $invoiceTown;
+     */
+    private $invoiceTown;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $invoiceZip;
+     */
+    private $invoiceZip;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $invoiceCountry;
+     */
+    private $invoiceCountry;
 
 
     /**
@@ -88,31 +101,36 @@ class Invoice
 
     /**
      * @ORM\Column(type="string")
-     */private $deliveryCompany;
+     */
+    private $deliveryCompany;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $deliveryStreet;
+     */
+    private $deliveryStreet;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $deliveryTown;
+     */
+    private $deliveryTown;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $deliveryZip;
+     */
+    private $deliveryZip;
 
 
     /**
      * @ORM\Column(type="string")
-     */private $deliveryCountry;
+     */
+    private $deliveryCountry;
 
 
     /**
-     * @var ArrayCollection
+     * @var InvoiceItem[]
      * @ORM\OneToMany(targetEntity="Samius\InvoiceBundle\Entity\InvoiceItem", mappedBy="invoice", cascade={"persist", "remove"})
      */
     private $items;
@@ -134,7 +152,7 @@ class Invoice
 
     private function checkNumberFormat($numberFormat)
     {
-        if (!preg_match('/^\{(YY){1,2}}.*#\{\d\}$/', $numberFormat)){
+        if (!preg_match('/^\{(YY){1,2}}.*#\{\d\}$/', $numberFormat)) {
             throw new BadNumberFormatException();
         }
     }
@@ -198,10 +216,11 @@ class Invoice
         $this->number = $number;
         return $number;
     }
-    
+
     public function addItem(InvoiceItem $item)
     {
         $this->items->add($item);
+        $item->setInvoice($this);
     }
 
     /**
@@ -214,7 +233,7 @@ class Invoice
      * @param null $ic
      * @param null $dic
      */
-    public function setRecipient($name, $company, $street, $town, $zip, $country, $ic = null, $dic=null)
+    public function setRecipient($name, $company, $street, $town, $zip, $country, $ic = null, $dic = null)
     {
         $this->invoiceName = $name;
         $this->invoiceCompany = $company;
@@ -244,11 +263,152 @@ class Invoice
         $this->deliveryCountry = $country;
     }
 
+
+    /**
+     * @return float
+     */
+    public function getTotalPriceWithoutVat()
+    {
+        $price = 0;
+        foreach ($this->getItems() as $item) {
+            $price += $item->getTotalPriceWithoutVat();
+        }
+        return $price;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTotalPriceWithVat()
+    {
+        $price = 0;
+        foreach ($this->getItems() as $item) {
+            $price += $item->getTotalPriceWithVat();
+        }
+        return $price;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTotalVat()
+    {
+        $vat = 0;
+        foreach ($this->getItems() as $item) {
+            $vat += $item->getTotalVat();
+        }
+        return $vat;
+    }
+
+    /**
+     * @return InvoiceItem[]
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
     /**
      * @return string
      */
     public function getNumberFormat()
     {
         return $this->numberFormat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceName()
+    {
+        return $this->invoiceName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceCompany()
+    {
+        return $this->invoiceCompany;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceIc()
+    {
+        return $this->invoiceIc;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceDic()
+    {
+        return $this->invoiceDic;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceStreet()
+    {
+        return $this->invoiceStreet;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceTown()
+    {
+        return $this->invoiceTown;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceZip()
+    {
+        return $this->invoiceZip;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceCountry()
+    {
+        return $this->invoiceCountry;
+    }
+
+    /**
+     * @param \DateTime $dueDate
+     */
+    public function setDueDate(\DateTime $dueDate)
+    {
+        $this->dueDate = $dueDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDueDate()
+    {
+        return $this->dueDate;
     }
 }

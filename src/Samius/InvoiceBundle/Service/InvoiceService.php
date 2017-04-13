@@ -36,12 +36,12 @@ class InvoiceService
     {
         $res = $this->em->getRepository('InvoiceBundle:Invoice')->createQueryBuilder('i')->select('i.number')
             ->where('i.number LIKE :numberBase')->setParameter('numberBase', $invoice->getNumberBase() . '%')->orderBy('i.number', 'desc')
-            ->getQuery()->setMaxResults(1)->getSingleScalarResult();
+            ->getQuery()->setMaxResults(1)->getOneOrNullResult();
 
         if (!$res) {
             return null;
         }
 
-        return $res;
+        return $res['number'];
     }
 }

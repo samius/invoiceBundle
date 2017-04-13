@@ -60,7 +60,7 @@ class InvoiceItem
         $this->description = $description;
         $this->unitPriceWithoutVat = $unitPriceWithoutVat * 100;
         $this->count = $count;
-        $this->vat = $vat;
+        $this->vat = $vat * 100;
     }
 
     /**
@@ -71,5 +71,66 @@ class InvoiceItem
         $this->invoice = $invoice;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
+    public function setUnitPriceWithoutVat()
+    {
+        $this->unitPriceWithoutVat * 100;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnitPriceWithoutVat()
+    {
+        return $this->unitPriceWithoutVat / 100;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVat()
+    {
+        return $this->vat / 100;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalPriceWithoutVat()
+    {
+        return $this->getCount() * $this->getUnitPriceWithoutVat();
+    }
+    
+    public function getTotalPriceWithVat()
+    {
+        return $this->getTotalPriceWithoutVat() * $this->getVatRate();
+    }
+    
+    public function getTotalVat()
+    {
+        return $this->getTotalPriceWithVat() - $this->getTotalPriceWithoutVat();
+    }
+
+    /**
+     * @return float
+     */
+    private function getVatRate()
+    {
+        return (100 + ($this->getVat()))/100;
+    }
 }
