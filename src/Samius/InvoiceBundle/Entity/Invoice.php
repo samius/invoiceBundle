@@ -148,8 +148,8 @@ class Invoice
     private function getSequenceFromNumber($number)
     {
         $base = $this->getNumberBase();
-        $sequence = str_replace($base, '', $number);
-        return (int)$sequence;
+        $sequence = preg_replace('/^' . $base . '/', '', $number);
+        return intval($sequence);
     }
 
     /**
@@ -198,7 +198,7 @@ class Invoice
         $this->number = $number;
         return $number;
     }
-
+    
     public function addItem(InvoiceItem $item)
     {
         $this->items->add($item);
