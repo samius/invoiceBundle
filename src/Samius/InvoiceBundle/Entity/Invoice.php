@@ -273,6 +273,68 @@ class Invoice
         $this->deliveryCountry = $country;
     }
 
+    /**
+     * Rounds price with VAT to whole CZK.
+     * Adds one round item
+     * If invoice is in EUR (or is already rounded), does nothing
+     *
+     * @return Invoice
+     */
+    public function addRoundItem()
+    {
+        if ($this->isRounded()) {
+            return $this;
+        }
+
+        $roundItem = $this->getRoundItem();
+        if (!$roundItem) {
+            $roundItem = InvoiceItem::createRoundingItem($this->getRoundDiffPrice());
+            $this->items->add($roundItem);
+            $roundItem->setInvoice($this);
+        } else {
+            $roundItem->setUnitPriceWithoutVat(0);//diffPrice should not be involved by rounding price
+            $roundItem->setUnitPriceWithoutVat($this->getRoundDiffPrice());
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return InvoiceItem | false
+     */
+    public function getRoundItem()
+    {
+        foreach ($this->items as $item) {
+            if ($item->isRounding()) {
+                return $item;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return bool whether the invoice (in CZK) is rounded to whole CZK
+     */
+    public function isRounded()
+    {
+        if ($this->currency != self::CURRENCY_CZK) {
+            return true;
+        }
+
+        return $this->getRoundDiffPrice() == 0;
+    }
+
+    /**
+     * @return int price in hellers, that rounding item should have
+     */
+    private function getRoundDiffPrice()
+    {
+        $targetPrice = round($this->getTotalPriceWithVat());
+        $diff = $targetPrice - $this->getTotalPriceWithVat();
+
+        return $diff;
+    }
+
 
     /**
      * @return float
@@ -293,9 +355,10 @@ class Invoice
     {
         $price = 0;
         foreach ($this->getItems() as $item) {
-            $price += $item->getTotalPriceWithVat();
+            $price += round($item->getTotalPriceWithVat()*100);
         }
-        return $price;
+
+        return $price / 100;
     }
 
     /**

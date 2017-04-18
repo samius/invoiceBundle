@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class InvoiceItem
 {
+    const DESC_ROUND = 'ROUND'; //decription of round item
+
+
     /**
      * @var Invoice
      * @ORM\ManyToOne(targetEntity="Samius\InvoiceBundle\Entity\Invoice", inversedBy="items")
@@ -60,7 +63,7 @@ class InvoiceItem
         $this->description = $description;
         $this->unitPriceWithoutVat = $unitPriceWithoutVat * 100;
         $this->count = $count;
-        $this->vat = $vat * 100;
+        $this->vat = round($vat * 100);
     }
 
     /**
@@ -79,21 +82,28 @@ class InvoiceItem
         return $this->description;
     }
 
-    public function setUnitPriceWithoutVat()
-    {
-        $this->unitPriceWithoutVat * 100;
-    }
-
     /**
-     * @return mixed
+     * @return float
      */
     public function getUnitPriceWithoutVat()
     {
-        return $this->unitPriceWithoutVat / 100;
+        return round($this->unitPriceWithoutVat) / 100;
     }
 
     /**
-     * @return mixed
+     * @param mixed $unitPriceWithoutVat
+     * @return InvoiceItem
+     */
+    public function setUnitPriceWithoutVat($unitPriceWithoutVat)
+    {
+        $this->unitPriceWithoutVat = round($unitPriceWithoutVat * 100);
+        return $this;
+    }
+
+
+
+    /**
+     * @return int
      */
     public function getCount()
     {
@@ -101,7 +111,7 @@ class InvoiceItem
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getVat()
     {
@@ -113,17 +123,17 @@ class InvoiceItem
      */
     public function getTotalPriceWithoutVat()
     {
-        return $this->getCount() * $this->getUnitPriceWithoutVat();
+        return round($this->count * $this->unitPriceWithoutVat)/100;
     }
-    
+
     public function getTotalPriceWithVat()
     {
-        return $this->getTotalPriceWithoutVat() * $this->getVatRate();
+        return round($this->getTotalPriceWithoutVat() * $this->getVatRate()*100) / 100;
     }
-    
+
     public function getTotalVat()
     {
-        return $this->getTotalPriceWithVat() - $this->getTotalPriceWithoutVat();
+        return round(100*($this->getTotalPriceWithVat() - $this->getTotalPriceWithoutVat()))/100;
     }
 
     /**
@@ -131,6 +141,25 @@ class InvoiceItem
      */
     private function getVatRate()
     {
-        return (100 + ($this->getVat()))/100;
+        return (100 + ($this->getVat())) / 100;
+    }
+
+    /**
+     * Creates item with specific description and zero VAT
+     * @param $price
+     * @return InvoiceItem
+     */
+    public static function createRoundingItem($price)
+    {
+        return new self(self::DESC_ROUND, $price, 1, 0);
+
+    }
+
+    /**
+     * @return true, if this item is rounding (has specific description and zero VAT)
+     */
+    public function isRounding()
+    {
+        return $this->description == self::DESC_ROUND && $this->getVat()== 0;
     }
 }
