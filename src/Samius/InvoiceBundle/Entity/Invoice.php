@@ -13,6 +13,10 @@ use Samius\InvoiceBundle\Exception\BadNumberFormatException;
 class Invoice
 {
 
+    const CURRENCY_CZK = 'CZK',
+          CURRENCY_EUR = 'EUR',
+          CURRENCY_USD = 'USD';
+
     /**
      * @ORM\Column(type="string")
      */
@@ -48,11 +52,17 @@ class Invoice
     /**
      * @ORM\Column(type="string")
      */
-    private $invoiceName;
+    private $currency;
 
 
     /**
      * @ORM\Column(type="string")
+     */
+    private $invoiceName;
+
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      */
     private $invoiceCompany;
 
@@ -100,7 +110,7 @@ class Invoice
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $deliveryCompany;
 
@@ -411,4 +421,24 @@ class Invoice
     {
         return $this->dueDate;
     }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return Invoice
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+
 }
