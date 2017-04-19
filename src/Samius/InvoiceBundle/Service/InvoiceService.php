@@ -17,12 +17,16 @@ class InvoiceService
     }
 
     /**
+     * If invoice has no number yet, generates one.
      * @param Invoice $invoice
      */
     public function saveInvoice(Invoice $invoice)
     {
-        $lastNumber = $this->getInvoiceLastNumber($invoice);
-        $invoice->setIncrementedNumber($lastNumber);
+        if (!$invoice->getNumber()) {
+            $lastNumber = $this->getInvoiceLastNumber($invoice);
+            $invoice->setIncrementedNumber($lastNumber);
+        }
+
         $this->em->persist($invoice);
         $this->em->flush();
     }

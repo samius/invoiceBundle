@@ -147,6 +147,13 @@ class Invoice
 
 
     /**
+     * @var string
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $pdf;
+
+
+    /**
      * Invoice constructor.
      * @param \DateTime $dateCreated
      * @param string $numberFormat
@@ -503,5 +510,24 @@ class Invoice
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getPdf()
+    {
+        if (is_resource($this->pdf)) {
+            return stream_get_contents($this->pdf);
+        }
+        return $this->pdf;
+    }
 
+    /**
+     * @param string $pdf
+     * @return Invoice
+     */
+    public function setPdf($pdf)
+    {
+        $this->pdf = $pdf;
+        return $this;
+    }
 }
