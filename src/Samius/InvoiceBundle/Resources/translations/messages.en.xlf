@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-04-19T12:26:26Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="fbf58b9428c30c7468a3be9e1363731a60c1a045" resname="Zaokrouhlení">
+        <source>Zaokrouhlení</source> <target state="needs-translation">Zaokrouhlenía</target> <jms:reference-file line="183">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="69145a4ff8589828e455d9e99c3df9655b56933f" resname="invoice.invoice-NUMBER">
+        <source>invoice.invoice-NUMBER</source> <target state="needs-translation">INVAS</target> <jms:reference-file line="96">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="584954c8db0ec30ce577132da2f49f583295e0aa" resname="invoice.title">
+        <source>invoice.title</source> <target state="needs-translation">asd</target> <jms:reference-file line="95">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

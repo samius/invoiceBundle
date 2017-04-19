@@ -8,7 +8,7 @@ services:
 
     invoicepdfconverter:
         class: Samius\InvoiceBundle\Converter\PdfConverter
-        arguments: ['@invoicetcpdf']
+        arguments: ['@invoicetcpdf', '@twig', '@translator']
 
     invoice.twig_extension:
         class: Samius\InvoiceBundle\Twig\InvoiceExtension

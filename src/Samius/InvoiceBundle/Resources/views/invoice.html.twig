@@ -2,9 +2,6 @@
 <head>
     <style type="text/css">
 
-        /*th,td,tr {
-            border: 1px dotted red;
-        }*/
         table {
             width: 100%;
             padding: 0;
@@ -92,8 +89,8 @@
 <body>
 <table>
     <tr class="nadpis">
-        <td><h1>Daňový doklad</h1></td>
-        <td class="cisloFaktury">Faktura č. {{ invoice.number }}</td>
+        <td><h1>{{ app.request.locale }}{{"invoice.title" |trans}}</h1></td>
+        <td class="cisloFaktury">{{ 'invoice.invoice-NUMBER' |trans({'%NUMBER%':invoice.number})}}</td>
     </tr>
     <tr class="separator">
         <td colspan="7">
