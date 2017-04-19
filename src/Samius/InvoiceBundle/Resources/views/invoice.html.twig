@@ -157,7 +157,14 @@
             {{'invoice.bank.bank'|trans}}: {{contractor.bankName}}<br/>
             {{ 'invoice.bank.account'|trans }}: <span class="account_number">{{contractor.bankNumber}}</span><br/>
             {{'invoice.bank.variable'|trans}}: <span class="variable-symbol">{{ invoice.number }}</span><br/>
-            {{'invoice.bank.paymentForm'|trans}}: Převodem
+            {{'invoice.bank.paymentForm'|trans}}:
+            {% if contractor.isPaymentTypeDelivery  %}
+                {{ 'invoice.bank.paymentTypeDelivery'|trans }}
+            {% elseif contractor.isPaymentTypeTransfer %}
+                {{ 'invoice.bank.paymentTypeTransfer'|trans }}
+            {% else %}
+                {{ 'invoice.bank.paymentTypeTransfer'|trans }} / {{ 'invoice.bank.paymentTypeDelivery'|trans }}
+            {% endif %}
         </td>
         <td>{{'invoice.dateCreated'|trans}}: {{ invoice.dateCreated |date('j. n. Y') }}<br/>{{'invoice.dueDate'|trans}}: <b>{{ invoice.dueDate |date('j. n. Y') }}</b>
             <br><br>

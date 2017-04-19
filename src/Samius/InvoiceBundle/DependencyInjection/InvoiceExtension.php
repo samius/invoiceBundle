@@ -27,6 +27,7 @@ class InvoiceExtension extends Extension
 
         $container->setParameter('invoice_bank_name', $config['bank']['name']);
         $container->setParameter('invoice_bank_number', $config['bank']['number']);
+        $container->setParameter('invoice_bank_paymenttype', $config['bank']['payment_type']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');

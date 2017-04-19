@@ -4,7 +4,7 @@ services:
 
     contractorholder:
         class: Samius\InvoiceBundle\DataHolder\Contractor
-        arguments: ['%invoice_contractor_company%', '%invoice_contractor_street%', '%invoice_contractor_town%', '%invoice_contractor_zip%', '%invoice_contractor_country%', '%invoice_contractor_ic%','%invoice_contractor_dic%', '%invoice_bank_name%', '%invoice_bank_number%']
+        arguments: ['%invoice_contractor_company%', '%invoice_contractor_street%', '%invoice_contractor_town%', '%invoice_contractor_zip%', '%invoice_contractor_country%', '%invoice_contractor_ic%','%invoice_contractor_dic%', '%invoice_bank_name%', '%invoice_bank_number%', '%invoice_bank_paymenttype%']
 
     invoiceservice:
         class: Samius\InvoiceBundle\Service\InvoiceService

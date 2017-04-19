@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('name')->defaultFalse()->end()
                         ->scalarNode('number')->defaultFalse()->end()
+                        ->scalarNode('payment_type')->defaultFalse()->end()
                     ->end()
                 ->end()
             ->end();

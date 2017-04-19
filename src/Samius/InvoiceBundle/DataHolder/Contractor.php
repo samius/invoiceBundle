@@ -4,6 +4,10 @@ namespace Samius\InvoiceBundle\DataHolder;
 
 class Contractor
 {
+    const PAYMENT_TYPE_TRANSFER = 'transfer',
+        PAYMENT_TYPE_DELIVERY = 'delivery',
+        PAYMENT_TYPE_BOTH = 'transfer/delivery';
+
     /**
      * @var string
      */
@@ -59,6 +63,12 @@ class Contractor
 
 
     /**
+     * @var string
+     */
+    private $paymentType;
+
+
+    /**
      * Contractor constructor.
      * @param string $company
      * @param string $street
@@ -70,7 +80,7 @@ class Contractor
      * @param $bankName
      * @param $bankNumber
      */
-    public function __construct($company, $street, $town, $zip, $country, $ic, $dic, $bankName, $bankNumber)
+    public function __construct($company, $street, $town, $zip, $country, $ic, $dic, $bankName, $bankNumber, $paymentType)
     {
         $this->company = $company;
         $this->street = $street;
@@ -81,6 +91,7 @@ class Contractor
         $this->dic = $dic;
         $this->bankName = $bankName;
         $this->bankNumber = $bankNumber;
+        $this->setPaymentType($paymentType);
     }
 
     /**
@@ -153,6 +164,43 @@ class Contractor
     public function getBankNumber()
     {
         return $this->bankNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentType() 
+    {
+        return $this->paymentType;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaymentTypeDelivery() 
+    {
+        return $this->paymentType == self::PAYMENT_TYPE_DELIVERY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaymentTypeTransfer()
+    {
+        return $this->paymentType == self::PAYMENT_TYPE_TRANSFER;
+    }
+
+    /**
+     * Default payment type is transfer
+     * @param $type
+     */
+    private function setPaymentType($type)
+    {
+        if ($type == self::PAYMENT_TYPE_BOTH || $type == self::PAYMENT_TYPE_DELIVERY) {
+            $this->paymentType = $type;
+        } else {
+            $this->paymentType = self::PAYMENT_TYPE_TRANSFER;
+        }
     }
 
 

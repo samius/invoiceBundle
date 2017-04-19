@@ -17,6 +17,7 @@ invoice:
     bank:
         name: "FIO"
         number: "1234567489/2010"
+        payment_type: "transfer/delivery"
 
 ```
 
