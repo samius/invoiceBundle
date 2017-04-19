@@ -9,3 +9,9 @@ services:
     invoicepdfconverter:
         class: Samius\InvoiceBundle\Converter\PdfConverter
         arguments: ['@invoicetcpdf']
+
+    invoice.twig_extension:
+        class: Samius\InvoiceBundle\Twig\InvoiceExtension
+        public: false
+        tags:
+            - { name: twig.extension }

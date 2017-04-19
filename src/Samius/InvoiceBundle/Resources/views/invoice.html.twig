@@ -1,0 +1,233 @@
+<html>
+<head>
+    <style type="text/css">
+
+        /*th,td,tr {
+            border: 1px dotted red;
+        }*/
+        table {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .heading {
+            font-weight: bold;
+            font-size: 80%;
+        }
+
+        .cisloFaktury {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .nadpis {
+            border-bottom: 1px solid #0000FF;
+        }
+
+        .items {
+            font-size: 80%;
+        }
+
+        .items tr th {
+            font-weight: bold;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 10px;
+            height: 30px;
+        }
+
+        .total td {
+            font-size: 140%;
+            height: 50px;
+            vertical-align: bottom;
+            margin: 30px;
+        }
+
+        .sum {
+            padding-bottom: 30px;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .separator td {
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .separator-item {
+            font-size: 5px;
+        }
+
+        .separator-invisible {
+            font-size: 25px;
+        }
+
+        .oznaceni {
+            text-align: left;
+            width: 210px;
+        }
+
+        .mnozstvi {
+            width: 50px;
+        }
+
+        .percent-dph {
+            width: 45px;
+        }
+
+        .dph, .zaklad, .celkem, .cena-za-mj {
+            width: 85px;
+        }
+
+        .ceny {
+            font-size: 7px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr class="nadpis">
+        <td><h1>Daňový doklad</h1></td>
+        <td class="cisloFaktury">Faktura č. {{ invoice.number }}</td>
+    </tr>
+    <tr class="separator">
+        <td colspan="7">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="heading">Dodavatel</div>
+            <table>
+                <tr>
+                    <td>Firma</td>
+                </tr>
+                <tr>
+                    <td>Ulice, Město</td>
+                </tr>
+                <tr>
+                    <td>Česká republika</td>
+                </tr>
+                <tr>
+                    <td>IČ: 123</td>
+                </tr>
+                <tr>
+                    <td>DIČ: CZ123</td>
+                </tr>
+            </table>
+        </td>
+        <td>
+            <div class="heading">Odběratel</div>
+            <table>
+                <tr>
+                    <td>{{ invoice.invoiceName }}, {{ invoice.invoiceCompany }}</td>
+                </tr>
+                <tr>
+                    <td>{{ invoice.invoiceStreet }}, {{ invoice.invoiceTown }}</td>
+                </tr>
+                <tr>
+                    <td>IČ: {{ invoice.invoiceIc }}</td>
+                </tr>
+                <tr>
+                    <td>DIČ: {{ invoice.invoiceDic }}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+
+            <div class="heading">Banka</div>
+            Banka: FIO<br/>
+            Číslo účtu: <span class="account_number">1234567890</span><br/>
+            Variabilní symbol: <span class="variable-symbol">{{ invoice.number }}</span><br/>
+            Forma úhrady: Převodem
+        </td>
+        <td>Datum vystavení: {{ invoice.dateCreated |date('j. n. Y') }}<br/>Datum splatnosti: <b>{{ invoice.dueDate |date('j. n. Y') }}</b>
+            <br><br>
+        </td>
+    </tr>
+    <tr class="separator-invisible">
+        <td colspan="7">
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="items">
+                <tr>
+                    <th class="oznaceni">Označení</th>
+                    <th class="mnozstvi text-center">Množ.</th>
+                    <th class="cena-za-mj text-right">Cena za MJ</th>
+                    <th class="percent-dph text-center">% DPH</th>
+                    <th class="zaklad text-right">Základ</th>
+                    <th class="dph text-right">DPH</th>
+                    <th class="celkem text-right">Celkem</th>
+                </tr>
+                <tr class="separator-item">
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                {% for item in invoice.items %}
+                    <tr class="separator-item">
+                        <td colspan="7">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {% if item.isRounding %}
+                                {{ 'Zaokrouhlení' |trans }}
+                            {% else %}
+                                {{ item.description }}
+                            {% endif %}
+
+                        </td>
+                        <td class="text-center">{{ item.count }}</td>
+                        <td class="text-right">{{ item.unitPriceWithoutVat |invoiceprice }}</td>
+                        <td class="text-center">{{ item.vat |invoiceprice}}</td>
+                        <td class="text-right">{{ item.getTotalPriceWithoutVat |invoiceprice }}</td>
+                        <td class="text-right">{{ item.totalVat |invoiceprice}}</td>
+                        <td class="text-right">{{ item.totalPriceWithVat |invoiceprice}}</td>
+                    </tr>
+                {% endfor %}
+                <tr class="separator">
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr class="sum">
+                    <td colspan="4">Součet položek</td>
+                    <td class="text-right">{{ invoice.totalPriceWithoutVat |invoiceprice}}</td>
+                    <td class="text-right">{{ invoice.totalVat |invoiceprice}}</td>
+                    <td class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td>CELKEM</td>
+                    <td colspan="6" class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td class="ceny">
+            <p>Ceny jsou uvedeny v CZK</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
