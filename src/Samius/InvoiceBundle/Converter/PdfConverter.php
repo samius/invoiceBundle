@@ -32,13 +32,7 @@ class PdfConverter
 
     public function convertInvoiceToPdf(Invoice $invoice)
     {
-
-        dump($this->translator->trans('invoice.title', [], 'messages')); die();
-//        $html = $this->twig->render('@Invoice/invoice.html.twig', ['invoice' => $invoice]);
-        $html = $twig->render('@Invoice/invoice.html.twig', ['invoice' => $invoice]);
-        echo $html;
-        die;
-
+        $html = $this->twig->render('@Invoice/invoice.html.twig', ['invoice' => $invoice]);
 
         // create new PDF document
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

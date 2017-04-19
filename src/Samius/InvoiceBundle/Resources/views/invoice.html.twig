@@ -1,7 +1,6 @@
 <html>
 <head>
     <style type="text/css">
-
         table {
             width: 100%;
             padding: 0;
@@ -89,7 +88,7 @@
 <body>
 <table>
     <tr class="nadpis">
-        <td><h1>{{ app.request.locale }}{{"invoice.title" |trans}}</h1></td>
+        <td><h1>{{"invoice.title" |trans}}</h1></td>
         <td class="cisloFaktury">{{ 'invoice.invoice-NUMBER' |trans({'%NUMBER%':invoice.number})}}</td>
     </tr>
     <tr class="separator">
@@ -99,7 +98,7 @@
     </tr>
     <tr>
         <td>
-            <div class="heading">Dodavatel</div>
+            <div class="heading">{{'invoice.contractor'|trans}}</div>
             <table>
                 <tr>
                     <td>Firma</td>
@@ -111,15 +110,15 @@
                     <td>Česká republika</td>
                 </tr>
                 <tr>
-                    <td>IČ: 123</td>
+                    <td>{{'invoice.ic'|trans}}: 123</td>
                 </tr>
                 <tr>
-                    <td>DIČ: CZ123</td>
+                    <td>{{'invoice.dic'|trans}}: CZ123</td>
                 </tr>
             </table>
         </td>
         <td>
-            <div class="heading">Odběratel</div>
+            <div class="heading">{{'invoice.customer' |trans}}</div>
             <table>
                 <tr>
                     <td>{{ invoice.invoiceName }}, {{ invoice.invoiceCompany }}</td>
@@ -128,10 +127,10 @@
                     <td>{{ invoice.invoiceStreet }}, {{ invoice.invoiceTown }}</td>
                 </tr>
                 <tr>
-                    <td>IČ: {{ invoice.invoiceIc }}</td>
+                    <td>{{'invoice.ic'|trans}}: {{ invoice.invoiceIc }}</td>
                 </tr>
                 <tr>
-                    <td>DIČ: {{ invoice.invoiceDic }}</td>
+                    <td>{{ 'invoice.dic'|trans}}: {{ invoice.invoiceDic }}</td>
                 </tr>
             </table>
         </td>
@@ -140,13 +139,13 @@
         <td>
 
 
-            <div class="heading">Banka</div>
-            Banka: FIO<br/>
-            Číslo účtu: <span class="account_number">1234567890</span><br/>
-            Variabilní symbol: <span class="variable-symbol">{{ invoice.number }}</span><br/>
-            Forma úhrady: Převodem
+            <div class="heading">{{'invoice.bank.title'|trans}}</div>
+            {{'invoice.bank.bank'|trans}}: FIO<br/>
+            {{ 'invoice.bank.account'|trans }}: <span class="account_number">1234567890</span><br/>
+            {{'invoice.bank.variable'|trans}}: <span class="variable-symbol">{{ invoice.number }}</span><br/>
+            {{'invoice.bank.paymentForm'|trans}}: Převodem
         </td>
-        <td>Datum vystavení: {{ invoice.dateCreated |date('j. n. Y') }}<br/>Datum splatnosti: <b>{{ invoice.dueDate |date('j. n. Y') }}</b>
+        <td>{{'invoice.dateCreated'|trans}}: {{ invoice.dateCreated |date('j. n. Y') }}<br/>{{'invoice.dueDate'|trans}}: <b>{{ invoice.dueDate |date('j. n. Y') }}</b>
             <br><br>
         </td>
     </tr>
@@ -159,13 +158,13 @@
         <td>
             <table class="items">
                 <tr>
-                    <th class="oznaceni">Označení</th>
-                    <th class="mnozstvi text-center">Množ.</th>
-                    <th class="cena-za-mj text-right">Cena za MJ</th>
-                    <th class="percent-dph text-center">% DPH</th>
-                    <th class="zaklad text-right">Základ</th>
-                    <th class="dph text-right">DPH</th>
-                    <th class="celkem text-right">Celkem</th>
+                    <th class="oznaceni">{{'invoice.items.name'|trans}}</th>
+                    <th class="mnozstvi text-center">{{'invoice.items.count'|trans}}</th>
+                    <th class="cena-za-mj text-right">{{'invoice.items.unitPrice'|trans}}</th>
+                    <th class="percent-dph text-center">{{'invoice.items.vatPercent'|trans}}</th>
+                    <th class="zaklad text-right">{{'invoice.items.base'|trans}}</th>
+                    <th class="dph text-right">{{'invoice.items.vat'|trans}}</th>
+                    <th class="celkem text-right">{{'invoice.items.totalItem'|trans}}</th>
                 </tr>
                 <tr class="separator-item">
                     <td colspan="7">&nbsp;</td>
@@ -177,11 +176,10 @@
                     <tr>
                         <td>
                             {% if item.isRounding %}
-                                {{ 'Zaokrouhlení' |trans }}
+                                {{ 'invoice.item.roundTitle' |trans }}
                             {% else %}
                                 {{ item.description }}
                             {% endif %}
-
                         </td>
                         <td class="text-center">{{ item.count }}</td>
                         <td class="text-right">{{ item.unitPriceWithoutVat |invoiceprice }}</td>
@@ -202,7 +200,7 @@
                     </td>
                 </tr>
                 <tr class="sum">
-                    <td colspan="4">Součet položek</td>
+                    <td colspan="4">{{'invoice.itemsSum'|trans}}</td>
                     <td class="text-right">{{ invoice.totalPriceWithoutVat |invoiceprice}}</td>
                     <td class="text-right">{{ invoice.totalVat |invoiceprice}}</td>
                     <td class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
@@ -213,7 +211,7 @@
                     </td>
                 </tr>
                 <tr class="total">
-                    <td>CELKEM</td>
+                    <td>{{'invoice.total'|trans|upper}}</td>
                     <td colspan="6" class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
                 </tr>
             </table>
@@ -222,7 +220,7 @@
     </tr>
     <tr>
         <td class="ceny">
-            <p>Ceny jsou uvedeny v CZK</p>
+            <p>{{'invoice.pricesIn-CURRENCY'|trans({'%CURRENCY%':invoice.currency})}}</p>
         </td>
     </tr>
 </table>
