@@ -101,19 +101,21 @@
             <div class="heading">{{'invoice.contractor'|trans}}</div>
             <table>
                 <tr>
-                    <td>Firma</td>
+                    <td>{{contractor.company}}</td>
                 </tr>
                 <tr>
-                    <td>Ulice, Město</td>
+                    <td>{{contractor.street}}, {{contractor.town}}</td>
                 </tr>
                 <tr>
-                    <td>Česká republika</td>
+                    <td>{{contractor.country}}</td>
                 </tr>
                 <tr>
-                    <td>{{'invoice.ic'|trans}}: 123</td>
+                    <td>{{'invoice.ic'|trans}}: {{contractor.ic}}</td>
                 </tr>
                 <tr>
-                    <td>{{'invoice.dic'|trans}}: CZ123</td>
+                    {% if contractor.dic %}
+                        <td>{{'invoice.dic'|trans}}: {{ contractor.dic }}</td>
+                    {% endif %}
                 </tr>
             </table>
         </td>
@@ -127,10 +129,22 @@
                     <td>{{ invoice.invoiceStreet }}, {{ invoice.invoiceTown }}</td>
                 </tr>
                 <tr>
-                    <td>{{'invoice.ic'|trans}}: {{ invoice.invoiceIc }}</td>
+                    <td>{{ invoice.invoiceCountry }}</td>
                 </tr>
                 <tr>
-                    <td>{{ 'invoice.dic'|trans}}: {{ invoice.invoiceDic }}</td>
+                    <td>
+                        {% if invoice.invoiceIc %}
+                            {{'invoice.ic'|trans}}: {{ invoice.invoiceIc }}
+                        {% endif %}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if invoice.invoiceDic %}
+                            {{ 'invoice.dic'|trans}}: {{ invoice.invoiceDic }}
+                        {% endif %}
+                    </td>
                 </tr>
             </table>
         </td>
@@ -140,8 +154,8 @@
 
 
             <div class="heading">{{'invoice.bank.title'|trans}}</div>
-            {{'invoice.bank.bank'|trans}}: FIO<br/>
-            {{ 'invoice.bank.account'|trans }}: <span class="account_number">1234567890</span><br/>
+            {{'invoice.bank.bank'|trans}}: {{contractor.bankName}}<br/>
+            {{ 'invoice.bank.account'|trans }}: <span class="account_number">{{contractor.bankNumber}}</span><br/>
             {{'invoice.bank.variable'|trans}}: <span class="variable-symbol">{{ invoice.number }}</span><br/>
             {{'invoice.bank.paymentForm'|trans}}: Převodem
         </td>

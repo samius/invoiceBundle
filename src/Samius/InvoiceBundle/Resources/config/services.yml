@@ -2,13 +2,17 @@ services:
     invoicetcpdf:
         class: TCPDF
 
+    contractorholder:
+        class: Samius\InvoiceBundle\DataHolder\Contractor
+        arguments: ['%invoice_contractor_company%', '%invoice_contractor_street%', '%invoice_contractor_town%', '%invoice_contractor_zip%', '%invoice_contractor_country%', '%invoice_contractor_ic%','%invoice_contractor_dic%', '%invoice_bank_name%', '%invoice_bank_number%']
+
     invoiceservice:
         class: Samius\InvoiceBundle\Service\InvoiceService
         arguments: ['@doctrine.orm.entity_manager']
 
     invoicepdfconverter:
         class: Samius\InvoiceBundle\Converter\PdfConverter
-        arguments: ['@invoicetcpdf', '@twig', '@translator']
+        arguments: ['@invoicetcpdf', '@twig', '@contractorholder']
 
     invoice.twig_extension:
         class: Samius\InvoiceBundle\Twig\InvoiceExtension

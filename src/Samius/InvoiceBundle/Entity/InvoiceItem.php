@@ -96,7 +96,7 @@ class InvoiceItem
      */
     public function setUnitPriceWithoutVat($unitPriceWithoutVat)
     {
-        $this->unitPriceWithoutVat = round($unitPriceWithoutVat * 100);
+        $this->unitPriceWithoutVat = floor($unitPriceWithoutVat * 100);
         return $this;
     }
 
@@ -133,7 +133,7 @@ class InvoiceItem
 
     public function getTotalVat()
     {
-        return floor(100*($this->getTotalPriceWithVat() - $this->getTotalPriceWithoutVat()))/100;
+        return $this->getTotalPriceWithVat() - $this->getTotalPriceWithoutVat();
     }
 
     /**

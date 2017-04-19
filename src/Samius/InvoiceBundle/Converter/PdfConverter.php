@@ -1,6 +1,7 @@
 <?php
 namespace Samius\InvoiceBundle\Converter;
 
+use Samius\InvoiceBundle\DataHolder\Contractor;
 use Samius\InvoiceBundle\Entity\Invoice;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -19,20 +20,20 @@ class PdfConverter
 
 
     /**
-     * @var TranslatorInterface
+     * @var Contractor
      */
-    private $translator;
+    private $contractor;
 
-
-    public function __construct(\TCPDF $tcpdf, \Twig_Environment $twig, TranslatorInterface $translator)
+    public function __construct(\TCPDF $tcpdf, \Twig_Environment $twig, Contractor $contractor)
     {
         $this->tcpdf = $tcpdf;
         $this->twig = $twig;
+        $this->contractor = $contractor;
     }
 
     public function convertInvoiceToPdf(Invoice $invoice)
     {
-        $html = $this->twig->render('@Invoice/invoice.html.twig', ['invoice' => $invoice]);
+        $html = $this->twig->render('@Invoice/invoice.html.twig', ['invoice' => $invoice, 'contractor'=>$this->contractor]);
 
         // create new PDF document
         $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
