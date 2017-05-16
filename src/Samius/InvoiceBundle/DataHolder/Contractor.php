@@ -69,6 +69,12 @@ class Contractor
 
 
     /**
+     * @var bool
+     */
+    private $vatPayer;
+
+
+    /**
      * Contractor constructor.
      * @param string $company
      * @param string $street
@@ -79,8 +85,10 @@ class Contractor
      * @param string $dic
      * @param $bankName
      * @param $bankNumber
+     * @param $paymentType
+     * @param bool $vatPayer
      */
-    public function __construct($company, $street, $town, $zip, $country, $ic, $dic, $bankName, $bankNumber, $paymentType)
+    public function __construct($company, $street, $town, $zip, $country, $ic, $dic, $vatPayer, $bankName, $bankNumber, $paymentType)
     {
         $this->company = $company;
         $this->street = $street;
@@ -92,6 +100,7 @@ class Contractor
         $this->bankName = $bankName;
         $this->bankNumber = $bankNumber;
         $this->setPaymentType($paymentType);
+        $this->vatPayer = $vatPayer;
     }
 
     /**
@@ -201,6 +210,14 @@ class Contractor
         } else {
             $this->paymentType = self::PAYMENT_TYPE_TRANSFER;
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVatPayer()
+    {
+        return $this->vatPayer;
     }
 
 

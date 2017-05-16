@@ -31,6 +31,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('country')->defaultFalse()->end()
                         ->scalarNode('ic')->defaultFalse()->end()
                         ->scalarNode('dic')->defaultFalse()->end()
+                        ->scalarNode('vatpayer')->defaultFalse()->end()
                     ->end()
                 ->end()
                 ->arrayNode('bank')

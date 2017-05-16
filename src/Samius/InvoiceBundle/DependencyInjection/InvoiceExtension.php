@@ -24,6 +24,7 @@ class InvoiceExtension extends Extension
         $container->setParameter('invoice_contractor_ic', $config['contractor']['ic']);
         $container->setParameter('invoice_contractor_dic', $config['contractor']['dic']);
         $container->setParameter('invoice_contractor_country', $config['contractor']['country']);
+        $container->setParameter('invoice_contractor_vatpayer', $config['contractor']['vatpayer']);
 
         $container->setParameter('invoice_bank_name', $config['bank']['name']);
         $container->setParameter('invoice_bank_number', $config['bank']['number']);
