@@ -1,33 +1,26 @@
 <html>
 <head>
     <style type="text/css">
+        body {
+            font-size: 80%;
+        }
+
         table {
-            width: 100%;
-            padding: 0;
+            padding: 2px 2px 2px 0;
             margin: 0;
         }
 
         .heading {
-            font-weight: bold;
             font-size: 80%;
-        }
-
-        .cisloFaktury {
-            text-align: right;
-            font-size: 14px;
-        }
-
-        .nadpis {
-            border-bottom: 1px solid #0000FF;
         }
 
         .items {
-            font-size: 80%;
+            font-size: 90%;
         }
 
         .items tr th {
             font-weight: bold;
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: 1px solid #000;
             padding-bottom: 10px;
             height: 30px;
         }
@@ -52,7 +45,7 @@
         }
 
         .separator td {
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: 1px solid #000;
         }
 
         .separator-item {
@@ -83,109 +76,189 @@
         .ceny {
             font-size: 7px;
         }
+
+        .dodavatel {
+            width: 50%
+        }
+
+        .bordered {
+            border: 1px solid black;
+        }
+
+        .bordered1 {
+            border: 2px solid black;
+        }
     </style>
 </head>
 <body>
 <table>
     <tr class="nadpis">
-        <td><h1>{{"invoice.title" |trans}}</h1></td>
-        <td class="cisloFaktury">{{ 'invoice.invoice-NUMBER' |trans({'%NUMBER%':invoice.number})}}</td>
+        <td><h1>{{ 'invoice.invoice-NUMBER' |trans({'%NUMBER%':invoice.number}) }}</h1></td>
     </tr>
     <tr class="separator">
-        <td colspan="7">
+        <td>
             &nbsp;
         </td>
     </tr>
     <tr>
-        <td>
-            <div class="heading">{{'invoice.contractor'|trans}}</div>
+        <td class="dodavatel bordered">
             <table>
                 <tr>
-                    <td>{{contractor.company}}</td>
-                </tr>
-                <tr>
-                    <td>{{contractor.street}}, {{contractor.town}}</td>
-                </tr>
-                <tr>
-                    <td>{{contractor.country}}</td>
-                </tr>
-                <tr>
-                    <td>{{'invoice.ic'|trans}}: {{contractor.ic}}</td>
-                </tr>
-                <tr>
-                    {% if contractor.dic %}
-                        <td>{{'invoice.dic'|trans}}: {{ contractor.dic }}</td>
-                    {% endif %}
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="heading">{{ 'invoice.contractor'|trans }}:</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ contractor.company }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ contractor.street }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ contractor.zip }}, {{ contractor.town }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>{{ contractor.country }}</b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'invoice.ic'|trans }}: {{ contractor.ic }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'invoice.dic'|trans }}:{% if contractor.dic %} {{ contractor.dic }}{% else %} neplátce DPH{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td style="width: 25%">{{ 'invoice.bank.account'|trans }}:</td>
+                                <td class="bordered1" style="width: 75%; text-align: right;">{{ contractor.bankNumber }}</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td style="width: 75%">{{ 'invoice.dateCreated'|trans }}:</td>
+                                <td class="bordered" style="width: 25%; text-align: right;">{{ invoice.dateCreated |date('j. n. Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 75%">{{ 'invoice.dueDate'|trans }}:</td>
+                                <td class="bordered" style="width: 25%; text-align: right;">{{ invoice.dueDate |date('j. n. Y') }}</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>Firma není plátce DPH.</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'invoice.bank.paymentForm'|trans }}:
+                                    {% if contractor.isPaymentTypeDelivery %}
+                                        {{ 'invoice.bank.paymentTypeDelivery'|trans }}
+                                    {% elseif contractor.isPaymentTypeTransfer %}
+                                        {{ 'invoice.bank.paymentTypeTransfer'|trans }}
+                                    {% else %}
+                                        {{ 'invoice.bank.paymentTypeTransfer'|trans }} / {{ 'invoice.bank.paymentTypeDelivery'|trans }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
         </td>
-        <td>
-            <div class="heading">{{'invoice.customer' |trans}}</div>
+        <td class="bordered">
             <table>
                 <tr>
-                    <td>{{ invoice.invoiceName }}, {{ invoice.invoiceCompany }}</td>
-                </tr>
-                <tr>
-                    <td>{{ invoice.invoiceStreet }}, {{ invoice.invoiceTown }}</td>
-                </tr>
-                <tr>
-                    <td>{{ invoice.invoiceCountry }}</td>
-                </tr>
-                <tr>
                     <td>
-                        {% if invoice.invoiceIc %}
-                            {{'invoice.ic'|trans}}: {{ invoice.invoiceIc }}
-                        {% endif %}
+                        <table>
+                            <tr>
+                                <td>{{ 'invoice.bank.bank'|trans }}:</td>
+                                <td>{{ contractor.bankName }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 'invoice.bank.variable'|trans }}:</td>
+                                <td><span class="variable-symbol">{{ invoice.number }}</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%;" class="bordered">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="heading">{{ 'invoice.customer' |trans }}:</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>{{ invoice.invoiceName}}</b></td>
+                                        </tr>
+                                        {% if invoice.invoiceCompany %}
+                                            <tr>
+                                                <td><b>{{ invoice.invoiceName }}</b></td>
+                                            </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td><b>{{ invoice.invoiceStreet }}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>{{ invoice.invoiceZip }} {{ invoice.invoiceTown }}</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {% if invoice.invoiceIc %}
+                                                    {{ 'invoice.ic'|trans }}: {{ invoice.invoiceIc }}
+                                                {% endif %}
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% if invoice.invoiceDic %}
-                            {{ 'invoice.dic'|trans}}: {{ invoice.invoiceDic }}
-                        {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {% if invoice.invoiceDic %}
+                                                    {{ 'invoice.dic'|trans }}: {{ invoice.invoiceDic }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
-        </td>
-    </tr>
-    <tr>
-        <td>
-
-
-            <div class="heading">{{'invoice.bank.title'|trans}}</div>
-            {{'invoice.bank.bank'|trans}}: {{contractor.bankName}}<br/>
-            {{ 'invoice.bank.account'|trans }}: <span class="account_number">{{contractor.bankNumber}}</span><br/>
-            {{'invoice.bank.variable'|trans}}: <span class="variable-symbol">{{ invoice.number }}</span><br/>
-            {{'invoice.bank.paymentForm'|trans}}:
-            {% if contractor.isPaymentTypeDelivery  %}
-                {{ 'invoice.bank.paymentTypeDelivery'|trans }}
-            {% elseif contractor.isPaymentTypeTransfer %}
-                {{ 'invoice.bank.paymentTypeTransfer'|trans }}
-            {% else %}
-                {{ 'invoice.bank.paymentTypeTransfer'|trans }} / {{ 'invoice.bank.paymentTypeDelivery'|trans }}
-            {% endif %}
-        </td>
-        <td>{{'invoice.dateCreated'|trans}}: {{ invoice.dateCreated |date('j. n. Y') }}<br/>{{'invoice.dueDate'|trans}}: <b>{{ invoice.dueDate |date('j. n. Y') }}</b>
-            <br><br>
         </td>
     </tr>
     <tr class="separator-invisible">
-        <td colspan="7">
+        <td style="border-left: 1px solid black;">
+            &nbsp;
+        </td>
+        <td style="border-right: 1px solid black;">
             &nbsp;
         </td>
     </tr>
     <tr>
-        <td>
+        <td style="border-bottom: 1px solid black; border-left: 1px solid black; ">
             <table class="items">
                 <tr>
-                    <th class="oznaceni">{{'invoice.items.name'|trans}}</th>
-                    <th class="mnozstvi text-center">{{'invoice.items.count'|trans}}</th>
-                    <th class="cena-za-mj text-right">{{'invoice.items.unitPrice'|trans}}</th>
-                    <th class="percent-dph text-center">{{'invoice.items.vatPercent'|trans}}</th>
-                    <th class="zaklad text-right">{{'invoice.items.base'|trans}}</th>
-                    <th class="dph text-right">{{'invoice.items.vat'|trans}}</th>
-                    <th class="celkem text-right">{{'invoice.items.totalItem'|trans}}</th>
+                    <th class="oznaceni">{{ 'invoice.items.name'|trans }}</th>
+                    <th class="mnozstvi text-center">{{ 'invoice.items.count'|trans }}</th>
+                    <th class="cena-za-mj text-right">{{ 'invoice.items.unitPrice'|trans }}</th>
+                    <th class="percent-dph text-center">{{ 'invoice.items.vatPercent'|trans }}</th>
+                    <th class="zaklad text-right">{{ 'invoice.items.base'|trans }}</th>
+                    <th class="dph text-right">{{ 'invoice.items.vat'|trans }}</th>
+                    <th class="celkem text-right">{{ 'invoice.items.totalItem'|trans }}</th>
                 </tr>
                 <tr class="separator-item">
                     <td colspan="7">&nbsp;</td>
@@ -199,15 +272,19 @@
                             {% if item.isRounding %}
                                 {{ 'invoice.item.roundTitle' |trans }}
                             {% else %}
-                                {{ item.description }}
+                                {{ item.title }}
+                                {% if item.subtitle %}
+                                    <br/>
+                                    <small>{{ item.subtitle |raw}}</small>
+                                {% endif %}
                             {% endif %}
                         </td>
                         <td class="text-center">{{ item.count }}</td>
                         <td class="text-right">{{ item.unitPriceWithoutVat |invoiceprice }}</td>
-                        <td class="text-center">{{ item.vat |invoiceprice}}</td>
+                        <td class="text-center">{{ item.vat |invoiceprice }}</td>
                         <td class="text-right">{{ item.getTotalPriceWithoutVat |invoiceprice }}</td>
-                        <td class="text-right">{{ item.totalVat |invoiceprice}}</td>
-                        <td class="text-right">{{ item.totalPriceWithVat |invoiceprice}}</td>
+                        <td class="text-right">{{ item.totalVat |invoiceprice }}</td>
+                        <td class="text-right">{{ item.totalPriceWithVat |invoiceprice }}</td>
                     </tr>
                 {% endfor %}
                 <tr class="separator">
@@ -221,10 +298,10 @@
                     </td>
                 </tr>
                 <tr class="sum">
-                    <td colspan="4">{{'invoice.itemsSum'|trans}}</td>
-                    <td class="text-right">{{ invoice.totalPriceWithoutVat |invoiceprice}}</td>
-                    <td class="text-right">{{ invoice.totalVat |invoiceprice}}</td>
-                    <td class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
+                    <td colspan="4">{{ 'invoice.itemsSum'|trans }}</td>
+                    <td class="text-right">{{ invoice.totalPriceWithoutVat |invoiceprice }}</td>
+                    <td class="text-right">{{ invoice.totalVat |invoiceprice }}</td>
+                    <td class="text-right">{{ invoice.totalPriceWithVat |invoiceprice }}</td>
                 </tr>
                 <tr>
                     <td colspan="7">
@@ -232,16 +309,18 @@
                     </td>
                 </tr>
                 <tr class="total">
-                    <td>{{'invoice.total'|trans|upper}}</td>
-                    <td colspan="6" class="text-right">{{ invoice.totalPriceWithVat |invoiceprice}}</td>
+                    <td>{{ 'invoice.total'|trans|upper }}</td>
+                    <td colspan="6" class="text-right">{{ invoice.totalPriceWithVat |invoiceprice }}</td>
                 </tr>
             </table>
-
+        </td>
+        <td style="border-bottom: 1px solid black; border-right: 1px solid black">
+            &nbsp;
         </td>
     </tr>
     <tr>
         <td class="ceny">
-            <p>{{'invoice.pricesIn-CURRENCY'|trans({'%CURRENCY%':invoice.currency})}}</p>
+            <p>{{ 'invoice.pricesIn-CURRENCY'|trans({'%CURRENCY%':invoice.currency}) }}</p>
         </td>
     </tr>
 </table>

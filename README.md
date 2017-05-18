@@ -14,6 +14,7 @@ invoice:
         ic: "123456"
         dic: "CZ123456"
         country: "Czech Republic"
+        vatpayer: true
     bank:
         name: "FIO"
         number: "1234567489/2010"
@@ -23,5 +24,5 @@ invoice:
 
 
 - Create converter from your orders
-
+- Invoice lines have title and subtitle (subtitle is displayed smaller). Line format is title@@subtitle.
 

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class InvoiceItem
 {
     const DESC_ROUND = 'ROUND'; //decription of round item
+    const SUBTITLE_DELIMITER = '@@';//item description can be like title@@subtitle
 
 
     /**
@@ -80,6 +81,21 @@ class InvoiceItem
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getTitle()
+    {
+        $parts = explode(self::SUBTITLE_DELIMITER, $this->description);
+        return $parts[0];
+    }
+    
+    public function getSubtitle()
+    {
+        $parts = explode(self::SUBTITLE_DELIMITER, $this->description);
+        if (isset($parts[1])) {
+            return $parts[1];
+        }
+        return '';
     }
 
     /**
