@@ -1,136 +1,185 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-04-19T15:59:36Z" source-language="en" target-language="cs" datatype="plaintext" original="not.available">
+  <file date="2017-05-18T16:22:43Z" source-language="en" target-language="cs" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
       <trans-unit id="1f421a6bd05063fe271b9890e3b6fda948e7213b" resname="invoice.bank.account">
-        <source>invoice.bank.account</source> <target>Číslo účtu</target> <jms:reference-file line="158">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <source>invoice.bank.account</source> <target>Číslo účtu</target> <jms:reference-file line="133">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="158">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0535a9a8d1d450e86222fe79b61299ee0be5ebbc" resname="invoice.bank.bank">
         <source>invoice.bank.bank</source>
         <target>Banka</target>
-        <jms:reference-file line="157">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="173">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="157">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="79fc7ecc93a2fac39925f7667e52d94761013771" resname="invoice.bank.paymentForm">
         <source>invoice.bank.paymentForm</source>
         <target>Forma úhrady</target>
-        <jms:reference-file line="160">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="152">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="160">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7fc3971d05aa2ebb30389c76f69c3f8b066d9d85" resname="invoice.bank.paymentTypeDelivery">
-        <source>invoice.bank.paymentTypeDelivery</source> <target state="needs-translation">dobírkou</target> <jms:reference-file line="162">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
-        <jms:reference-file line="166">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <source>invoice.bank.paymentTypeDelivery</source>
+        <target>dobírkou</target>
+        <jms:reference-file line="154">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="158">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="162">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+        <jms:reference-file line="166">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3c0d0a87d2a8bc00c7c46657ec618117b5b72a3e" resname="invoice.bank.paymentTypeTransfer">
-        <source>invoice.bank.paymentTypeTransfer</source> <target state="needs-translation">převodem</target> <jms:reference-file line="164">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
-        <jms:reference-file line="166">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <source>invoice.bank.paymentTypeTransfer</source>
+        <target>převodem</target>
+        <jms:reference-file line="156">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="158">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="164">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+        <jms:reference-file line="166">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="33b3e6fdc4869fbcfe5e5aa205620ac38ec97eb9" resname="invoice.bank.title">
-        <source>invoice.bank.title</source> <target>Banka</target> <jms:reference-file line="156">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <source>invoice.bank.title</source>
+        <target>Banka</target>
+        <jms:reference-file line="156">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="87a31b075142f80137dfe893cd945b0a3c393df6" resname="invoice.bank.variable">
         <source>invoice.bank.variable</source>
         <target>Variabilní symbol</target>
-        <jms:reference-file line="159">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="177">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="159">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9a04063d97da304e942933b6118a8a571f3b771c" resname="invoice.companyNotVatPayer">
+        <source>invoice.companyNotVatPayer</source> <target state="needs-translation">Firma není plátce DPH.</target> <jms:reference-file line="149">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="465d730e39eba930b774843179e8daaf44f5f370" resname="invoice.contractor">
         <source>invoice.contractor</source>
         <target>Dodavatel</target>
-        <jms:reference-file line="101">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="99">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="101">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ff956b19b8e316578816ef786bfbf4641f57ca6d" resname="invoice.customer">
         <source>invoice.customer</source>
         <target>Odběratel</target>
-        <jms:reference-file line="123">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="190">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="123">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b5994263a491d247df5481987d1bcd3d09064c4a" resname="invoice.dateCreated">
         <source>invoice.dateCreated</source>
         <target>Datum vystavení</target>
-        <jms:reference-file line="169">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="139">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="169">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b079e57d4f7ff5b2dc93dc8963b985967b69162" resname="invoice.dic">
         <source>invoice.dic</source>
         <target>DIČ</target>
-        <jms:reference-file line="117">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
-        <jms:reference-file line="145">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="123">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="218">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="117">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+        <jms:reference-file line="145">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6e742b95b9f75a4ffd20723eae467936b5e5d868" resname="invoice.dic.novatpayer">
+        <source>invoice.dic.novatpayer</source>
+        <target>neplátce DPH</target>
+        <jms:reference-file line="123">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="52d1352c0fa3d72af3d1662eac8b013819e00441" resname="invoice.dueDate">
         <source>invoice.dueDate</source>
         <target>Datum splatnosti</target>
-        <jms:reference-file line="169">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="143">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="169">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e9a69b9df7d375557b67e713bbe5068caf6cc866" resname="invoice.ic">
         <source>invoice.ic</source>
         <target>IČ</target>
-        <jms:reference-file line="113">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
-        <jms:reference-file line="137">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="120">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="210">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="113">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
+        <jms:reference-file line="137">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="69145a4ff8589828e455d9e99c3df9655b56933f" resname="invoice.invoice-NUMBER">
         <source>invoice.invoice-NUMBER</source>
         <target>Faktura č. %NUMBER%</target>
-        <jms:reference-file line="92">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="84">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="92">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1335b1fe22642c011a480034ce6e2fc11e94aeba" resname="invoice.item.roundTitle">
         <source>invoice.item.roundTitle</source>
         <target>Zaokrouhlení</target>
-        <jms:reference-file line="200">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="22">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="200">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cc325053dd037d82b2d9ae849e3b166c980cacd4" resname="invoice.items.base">
         <source>invoice.items.base</source>
         <target>Základ</target>
-        <jms:reference-file line="186">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="8">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="186">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fa99f1fda253c1a6eaf3df924c1afd4b159ecd5f" resname="invoice.items.count">
         <source>invoice.items.count</source>
         <target>Množ.</target>
-        <jms:reference-file line="183">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="183">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f4cbae092ef443810b7350ce4a8771fb0a8d160d" resname="invoice.items.name">
         <source>invoice.items.name</source>
         <target>Označení</target>
-        <jms:reference-file line="182">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="3">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="182">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="28a5e655977c275b313c2f330f36cf0480a6f427" resname="invoice.items.totalItem">
         <source>invoice.items.totalItem</source>
         <target>Celkem</target>
-        <jms:reference-file line="188">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="188">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="13c5b85ba73723720c64315813e58b8473d43f11" resname="invoice.items.unitPrice">
         <source>invoice.items.unitPrice</source>
         <target>Cena za MJ</target>
-        <jms:reference-file line="184">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="184">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1e55277a5a8b7f038b94380754d8366784f7a481" resname="invoice.items.vat">
         <source>invoice.items.vat</source>
         <target>DPH</target>
-        <jms:reference-file line="187">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="187">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4a035a3e308842b539e031ec03e00ebe8bf45f0f" resname="invoice.items.vatPercent">
         <source>invoice.items.vatPercent</source>
         <target>DPH%</target>
-        <jms:reference-file line="185">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="7">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="185">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="36038d61c3649cbcee6e4c3d91beb86962d8bb82" resname="invoice.itemsSum">
         <source>invoice.itemsSum</source>
         <target>Součet položek</target>
-        <jms:reference-file line="224">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="43">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="50">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="224">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b80a6668ac46342a808e253aebf9c33c36607d3e" resname="invoice.pricesIn-CURRENCY">
         <source>invoice.pricesIn-CURRENCY</source>
         <target>Ceny jsou uvedeny v %CURRENCY%</target>
-        <jms:reference-file line="244">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="254">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="244">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="584954c8db0ec30ce577132da2f49f583295e0aa" resname="invoice.title">
         <source>invoice.title</source>
         <target>Daňový doklad</target>
-        <jms:reference-file line="91">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="91">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c7ef2035af1ef426cbc00af6c768b86ae138f40d" resname="invoice.total">
         <source>invoice.total</source>
         <target>Celkem</target>
-        <jms:reference-file line="235">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice.html.twig</jms:reference-file>
+        <jms:reference-file line="53">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_novat.html.twig</jms:reference-file>
+        <jms:reference-file line="61">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/_items_vatpayer.html.twig</jms:reference-file>
+        <jms:reference-file line="235">/../vendor/samius/invoicebundle/src/Samius/InvoiceBundle/Resources/views/invoice2.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

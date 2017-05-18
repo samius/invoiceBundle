@@ -120,7 +120,7 @@
                                 <td>{{ 'invoice.ic'|trans }}: {{ contractor.ic }}</td>
                             </tr>
                             <tr>
-                                <td>{{ 'invoice.dic'|trans }}:{% if contractor.dic %} {{ contractor.dic }}{% else %} neplátce DPH{% endif %}</td>
+                                <td>{{ 'invoice.dic'|trans }}:{% if contractor.dic %} {{ contractor.dic }}{% else %} {{ 'invoice.dic.novatpayer'|trans }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td>
@@ -145,9 +145,11 @@
                             </tr>
                         </table>
                         <table>
+                            {% if not contractor.vatpayer %}
                             <tr>
-                                <td>Firma není plátce DPH.</td>
+                                <td>{{ 'invoice.companyNotVatPayer' |trans }}</td>
                             </tr>
+                            {% endif %}
                             <tr>
                                 <td>{{ 'invoice.bank.paymentForm'|trans }}:
                                     {% if contractor.isPaymentTypeDelivery %}
@@ -195,7 +197,7 @@
                                         </tr>
                                         {% if invoice.invoiceCompany %}
                                             <tr>
-                                                <td><b>{{ invoice.invoiceName }}</b></td>
+                                                <td><b>{{ invoice.invoiceCompany }}</b></td>
                                             </tr>
                                         {% endif %}
                                         <tr>
