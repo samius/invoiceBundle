@@ -1,0 +1,59 @@
+<table class="items">
+                <tr>
+                    <th class="oznaceni">{{ 'invoice.items.name'|trans }}</th>
+                    <th class="mnozstvi text-center">{{ 'invoice.items.count'|trans }}</th>
+                    <th class="cena-za-mj text-right">{{ 'invoice.items.unitPrice'|trans }}</th>
+                    <th class="zaklad text-right">{{ 'invoice.items.base'|trans }}</th>
+                    <th class="celkem text-right">{{ 'invoice.items.totalItem'|trans }}</th>
+                </tr>
+                <tr class="separator-item">
+                    <td colspan="7">&nbsp;</td>
+                </tr>
+                {% for item in invoice.items %}
+                    <tr class="separator-item">
+                        <td colspan="7">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {% if item.isRounding %}
+                                {{ 'invoice.item.roundTitle' |trans }}
+                            {% else %}
+                                {{ item.title }}
+                                {% if item.subtitle %}
+                                    <br>
+                                    <small>{{ item.subtitle |raw}}</small>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td class="text-center">{{ item.count }}</td>
+                        <td class="text-right">{{ item.unitPriceWithoutVat |invoiceprice }}</td>
+                        <td class="text-right">{{ item.getTotalPriceWithoutVat |invoiceprice }}</td>
+                        <td class="text-right">{{ item.totalPriceWithVat |invoiceprice }}</td>
+                    </tr>
+                {% endfor %}
+                <tr class="separator">
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr class="sum">
+                    <td colspan="4">{{ 'invoice.itemsSum'|trans }}</td>
+                    <td class="text-right">{{ invoice.totalPriceWithoutVat |invoiceprice }}</td>
+                    <td class="text-right">{{ invoice.totalVat |invoiceprice }}</td>
+                    <td class="text-right">{{ invoice.totalPriceWithVat |invoiceprice }}</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr class="total">
+                    <td>{{ 'invoice.total'|trans|upper }}</td>
+                    <td colspan="6" class="text-right">{{ invoice.totalPriceWithVat |invoiceprice }}</td>
+                </tr>
+            </table>
