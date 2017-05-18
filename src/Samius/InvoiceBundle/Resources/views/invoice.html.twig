@@ -61,23 +61,6 @@
             font-size: 25px;
         }
 
-        .oznaceni {
-            text-align: left;
-            width: 210px;
-        }
-
-        .mnozstvi {
-            width: 50px;
-        }
-
-        .percent-dph {
-            width: 45px;
-        }
-
-        .dph, .zaklad, .celkem, .cena-za-mj {
-            width: 85px;
-        }
-
         .ceny {
             font-size: 7px;
         }
@@ -254,7 +237,7 @@
         </td>
     </tr>
     <tr>
-        <td style="border-bottom: 1px solid black; border-left: 1px solid black; ">
+        <td colspan="2" style="border-bottom: 1px solid black; border-left: 1px solid black;">
             {% if contractor.vatpayer %}
                 {% include '@Invoice/_items_vatpayer.html.twig' %}
             {% else %}
