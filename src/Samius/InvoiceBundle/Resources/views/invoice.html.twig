@@ -207,19 +207,10 @@
                                             <td><b>{{ invoice.invoiceZip }} {{ invoice.invoiceTown }}</b></td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                {% if invoice.invoiceIc %}
-                                                    {{ 'invoice.ic'|trans }}: {{ invoice.invoiceIc }}
-                                                {% endif %}
-
-                                            </td>
+                                            <td>{% if invoice.invoiceIc %}<b>{{ 'invoice.ic'|trans }}: {{ invoice.invoiceIc }}</b>{% endif %}</td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                {% if invoice.invoiceDic %}
-                                                    {{ 'invoice.dic'|trans }}: {{ invoice.invoiceDic }}
-                                                {% endif %}
-                                            </td>
+                                            <td>{% if invoice.invoiceDic %}<b>{{ 'invoice.dic'|trans }}: {{ invoice.invoiceDic }}</b>{% endif %}</td>
                                         </tr>
                                     </table>
                                 </td>

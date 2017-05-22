@@ -258,8 +258,8 @@ class Invoice
         $this->invoiceTown = $town;
         $this->invoiceZip = $zip;
         $this->invoiceCountry = $country;
-        $this->ic = $ic;
-        $this->dic = $dic;
+        $this->invoiceIc = $ic;
+        $this->invoiceDic = $dic;
     }
 
     /**
